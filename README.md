@@ -13,6 +13,8 @@ Tecnologías utilizadas:
 - Java
 - Eclipse
 - JUnit
+- JDoc
+- StarUML
 
 Estructura:
 - src/: código fuente

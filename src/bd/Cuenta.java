@@ -1,4 +1,4 @@
-package DDBB;
+package bd;
 
 /**
  * 
@@ -60,7 +60,7 @@ public class Cuenta {
 	 */
 	public void depositar(String usuario, double deposito) {
 
-		DataBase.usuarios.get(usuario).setSaldo(DataBase.usuarios.get(usuario).getSaldo() + deposito);
+		BaseDato.usuarios.get(usuario).setSaldo(BaseDato.usuarios.get(usuario).getSaldo() + deposito);
 	}
     
 
@@ -76,7 +76,7 @@ public class Cuenta {
 	 */
 	public boolean retirar(String usuario, double retiro) {
 
-		double saldoActual = DataBase.usuarios.get(usuario).getSaldo();
+		double saldoActual = BaseDato.usuarios.get(usuario).getSaldo();
 
 		// Validar fondos suficientes
 
@@ -85,7 +85,7 @@ public class Cuenta {
 			return false;
 		}
 
-		DataBase.usuarios.get(usuario).setSaldo(DataBase.usuarios.get(usuario).getSaldo() - retiro);
+		BaseDato.usuarios.get(usuario).setSaldo(BaseDato.usuarios.get(usuario).getSaldo() - retiro);
 
 		return true;
 	}
@@ -105,9 +105,9 @@ public class Cuenta {
 
 
 	    System.out.println("\n========================");
-	    System.out.println("Usuario		: " + DataBase.usuarios.get(usuario).getTitular());
-	    System.out.println("N° Cuenta	: " + DataBase.usuarios.get(usuario).getNumeroCuenta());
-	    System.out.println("Saldo		: " + DataBase.usuarios.get(usuario).getSaldo()+ " CLP");
+	    System.out.println("Usuario		: " + BaseDato.usuarios.get(usuario).getTitular());
+	    System.out.println("N° Cuenta	: " + BaseDato.usuarios.get(usuario).getNumeroCuenta());
+	    System.out.println("Saldo		: " + BaseDato.usuarios.get(usuario).getSaldo()+ " CLP");
 	    System.out.println("========================");
 	}
 	
@@ -123,7 +123,7 @@ public class Cuenta {
 		 */
 		public  boolean convertDivisa(String usuario, double monto) {
 
-			Double saldoActual = DataBase.usuarios.get(usuario).getSaldo();
+			Double saldoActual = BaseDato.usuarios.get(usuario).getSaldo();
 
 			// Validar el monto de entrada
 

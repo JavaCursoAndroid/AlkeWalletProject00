@@ -1,5 +1,5 @@
-package HERRAMIENTAS;
-import DDBB.DataBase;
+package herramientas;
+
 /**
  * Esta clase denominada MiBoxTool, tiene como finalidad facilitar y reducir
  * la escritura de código repetivo además de aportar claridad a la sintaxis 
@@ -13,13 +13,9 @@ import DDBB.DataBase;
  *  Contiene una herramienta para "pausar" pausa, la cual simula un flujo más comodo para
  *  visualizar entre transiciones de "pantallas"
  *  
- *  Contiene además algunas funciones especicas implementadas por las pantallas, para depositar,
- *  retirar, y convertir  montos de dinero del usuario, asi como su presentacion en un estado 
- *  de cuenta.
  *  
  */
-import DDBB.Cuenta;
-public class MiBoxTool {
+public class Utilidades {
 
 	// =====================================================
 	// CENTRAR TEXTO

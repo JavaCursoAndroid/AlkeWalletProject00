@@ -1,10 +1,11 @@
-package PANTALLAS;
+package pantallas;
 
-import HERRAMIENTAS.MiBoxTool;
+import herramientas.Utilidades;
 
 /**
- * Pantalas es una clase abstracta creada para que de ella
- * deriven las "interfaces" de la app en cado estado de la misma.
+ * Pantalla es una clase abstracta creada para que de ella
+ * hereden las clases pantallas que muestran o representan estados 
+ *de vistas de usuario cuando se ejecuta la aplicacion.
  * 
  * Esta clase contiene el método "ejecutar" el cual contiene a su vez a
  * el método "cleanerscreen" que pertenece al package "HERRAMIENTAS"
@@ -21,7 +22,7 @@ public abstract class Pantalla<T> {
 
     public final T ejecutar() {
 
-        MiBoxTool.cleanerscreen();
+        Utilidades.cleanerscreen();
 
         showInfo();
 

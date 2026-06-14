@@ -1,19 +1,17 @@
-package PANTALLAS;
+package pantallas;
 
 import APP.Main;
+import bd.BaseDato;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
-import DDBB.DataBase;
-
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
-
-public class PantallaConvertirDivisa extends Pantalla<Double> {
+public class ConvertidorDivisa extends Pantalla<Double> {
 
     @Override
     protected void showInfo() {
 
-        MiBoxTool.titulo("Conversión de divisas", 50);
-        DataBase.usuarios.get(Main.usuarioActual).mostrarCuenta(Main.usuarioActual);
+        Utilidades.titulo("Conversión de divisas", 50);
+        BaseDato.usuarios.get(Main.usuarioActual).mostrarCuenta(Main.usuarioActual);
 
         
     }
@@ -29,7 +27,7 @@ public class PantallaConvertirDivisa extends Pantalla<Double> {
                         "\nIngrese monto a convertir: ");
 
                 String entrada =
-                        ConsoleManager.scanner.nextLine();
+                        ConsolaAdministrador.scanner.nextLine();
 
                 entrada = entrada.replace(",", ".");
 
@@ -41,7 +39,7 @@ public class PantallaConvertirDivisa extends Pantalla<Double> {
                     System.out.println(
                             "\nERROR: Debe ingresar un valor positivo.");
 
-                    MiBoxTool.pausa(2000);
+                    Utilidades.pausa(2000);
 
                     continue;
                 }
@@ -53,7 +51,7 @@ public class PantallaConvertirDivisa extends Pantalla<Double> {
                 System.out.println(
                         "\nERROR: Debe ingresar un número válido.");
 
-                MiBoxTool.pausa(2000);
+                Utilidades.pausa(2000);
             }
         }
     }

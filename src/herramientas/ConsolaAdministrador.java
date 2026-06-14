@@ -1,4 +1,4 @@
-package HERRAMIENTAS;
+package herramientas;
 /**
  * 
  * Es una clase utilitaria diseñada para centralizar la llamada del objeto scanner en
@@ -6,7 +6,7 @@ package HERRAMIENTAS;
  */
 import java.util.Scanner;
 
-public class ConsoleManager {
+public class ConsolaAdministrador {
 
     public static final Scanner scanner = new Scanner(System.in);
 

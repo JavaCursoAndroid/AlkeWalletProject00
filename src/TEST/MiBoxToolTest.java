@@ -1,4 +1,4 @@
-package TEST;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,9 +7,9 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
-import DDBB.Cuenta;
-import DDBB.DataBase;
-import HERRAMIENTAS.MiBoxTool;
+import bd.Cuenta;
+import bd.BaseDato;
+import herramientas.Utilidades;
 
 class MiBoxToolTest {
 	
@@ -23,17 +23,17 @@ class MiBoxToolTest {
 	
 	@Test
 	void testCentrarValido() {
-	    assertEquals(" hola ", MiBoxTool.centrar("hola", 6));
+	    assertEquals(" hola ", Utilidades.centrar("hola", 6));
 	}
 	
 	@Test
 	void testCentrarMismoAncho() {    
-	    assertEquals("hola", MiBoxTool.centrar("hola", 4));
+	    assertEquals("hola", Utilidades.centrar("hola", 4));
 	}
 	
 	@Test
 	void testCentrarAnchoMenorQueTexto() {
-	    assertEquals("hola", MiBoxTool.centrar("hola", 3));
+	    assertEquals("hola", Utilidades.centrar("hola", 3));
 	}
 	/**
 	 * VERIFICA 4 CASOS PARA EL METODO TITULO
@@ -43,7 +43,7 @@ class MiBoxToolTest {
 	    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 	    System.setOut(new PrintStream(salida));
 
-	    MiBoxTool.titulo("Hola", 8);
+	    Utilidades.titulo("Hola", 8);
 
 	    String esperado =
 	            "********\n" +
@@ -59,7 +59,7 @@ class MiBoxToolTest {
 	    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 	    System.setOut(new PrintStream(salida));
 
-	    MiBoxTool.titulo("Java", 12);
+	    Utilidades.titulo("Java", 12);
 
 	    String resultado = salida.toString();
 
@@ -70,7 +70,7 @@ class MiBoxToolTest {
 	    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 	    System.setOut(new PrintStream(salida));
 
-	    MiBoxTool.titulo("", 6);
+	    Utilidades.titulo("", 6);
 
 	    String resultado = salida.toString();
 
@@ -81,7 +81,7 @@ class MiBoxToolTest {
 	    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 	    System.setOut(new PrintStream(salida));
 
-	    MiBoxTool.titulo("Test", 10);
+	    Utilidades.titulo("Test", 10);
 
 	    String[] lineas = salida.toString().split(System.lineSeparator());
 
@@ -96,7 +96,7 @@ class MiBoxToolTest {
 	    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 	    System.setOut(new PrintStream(salida));
 
-	    MiBoxTool.cleanerscreen();
+	    Utilidades.cleanerscreen();
 
 	    String resultado = salida.toString();
 

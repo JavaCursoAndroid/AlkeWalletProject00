@@ -1,15 +1,15 @@
-package PANTALLAS;
+package pantallas;
 
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
-public class PantallaControl extends Pantalla<Integer>
-                             implements OptionSelector {
+public class PanelControl extends Pantalla<Integer>
+                             implements OpcionSelector {
 
     @Override
     protected void showInfo() {
 
-        MiBoxTool.titulo("Panel de control Usuarios", 50);
+        Utilidades.titulo("Panel de control Usuarios", 50);
 
         System.out.println("\nEscoja una de las siguientes opciones:");
 
@@ -31,7 +31,7 @@ public class PantallaControl extends Pantalla<Integer>
         System.out.print("\nEstá ingresando: ");
 
         String entrada =
-                ConsoleManager.scanner.nextLine();
+                ConsolaAdministrador.scanner.nextLine();
 
         if (!entrada.matches("\\d+")) {
 

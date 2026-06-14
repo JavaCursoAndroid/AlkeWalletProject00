@@ -1,4 +1,4 @@
-package DDBB;
+package bd;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.Map;
  * tipo HashMap, que guarda un Nombre de usuario (KEY) y un objeto cuenta (VALOR)
  * 
 */
-public class  DataBase  {
+public class  BaseDato  {
 	
 	//Atributos, solo contiene una variable de tipo Map
 	

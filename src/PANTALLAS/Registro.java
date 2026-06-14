@@ -1,17 +1,16 @@
-package PANTALLAS;
+package pantallas;
 
-import DDBB.DataBase;
+import bd.BaseDato;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
-
-public class PantallaLogin extends Pantalla<String>
-                           implements Identity {
+public class Registro extends Pantalla<String>
+                           implements Identificar {
 
     @Override
     protected void showInfo() {
 
-        MiBoxTool.titulo("Autenticación de usuarios", 50);
+        Utilidades.titulo("Autenticación de usuarios", 50);
     }
 
     @Override
@@ -27,21 +26,21 @@ public class PantallaLogin extends Pantalla<String>
 
             System.out.print("\nIngrese su Nombre de usuario: ");
 
-            String usuario = ConsoleManager.scanner.nextLine();
+            String usuario = ConsolaAdministrador.scanner.nextLine();
 
             System.out.print("\nIngrese su contraseña: ");
 
-            String password = ConsoleManager.scanner.nextLine();
+            String password = ConsolaAdministrador.scanner.nextLine();
 
             // VERIFICACION DE EXISTENCIA DE USUARIO EN LA DATA BASE
 
-            if (!DataBase.usuarios.containsKey(usuario)) {
+            if (!BaseDato.usuarios.containsKey(usuario)) {
 
                 System.out.println("\nERROR: El usuario no existe.");
 
-                MiBoxTool.pausa(2000);
+                Utilidades.pausa(2000);
 
-                MiBoxTool.cleanerscreen();
+                Utilidades.cleanerscreen();
 
                 showInfo();
 
@@ -50,20 +49,20 @@ public class PantallaLogin extends Pantalla<String>
 
             // Verificar contraseña
 
-            if (DataBase.usuarios.get(usuario).getPassword().equals(password)) {
+            if (BaseDato.usuarios.get(usuario).getPassword().equals(password)) {
 
                 System.out.println("\nLOGIN EXITOSO.");
 
-                MiBoxTool.pausa(2000);
+                Utilidades.pausa(2000);
 
                 return usuario;
             }
 
             System.out.println("\nERROR: Contraseña incorrecta.");
 
-            MiBoxTool.pausa(2000);
+            Utilidades.pausa(2000);
 
-            MiBoxTool.cleanerscreen();
+            Utilidades.cleanerscreen();
 
             showInfo();
         }

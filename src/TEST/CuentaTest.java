@@ -1,4 +1,4 @@
-package TEST;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,9 +7,9 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
-import DDBB.Cuenta;
-import DDBB.DataBase;
-import HERRAMIENTAS.MiBoxTool;
+import bd.Cuenta;
+import bd.BaseDato;
+import herramientas.Utilidades;
 
 class CuentaTest {
 
@@ -18,15 +18,15 @@ class CuentaTest {
 		@Test
 		void testDepositarValido() {
 
-		    DataBase.usuarios.clear();
+		    BaseDato.usuarios.clear();
 
 		    Cuenta cuenta = new Cuenta("Pepito","1234");
 
-		    DataBase.usuarios.put("juan", cuenta);
+		    BaseDato.usuarios.put("juan", cuenta);
 
-		    DataBase.usuarios.get("juan").depositar("juan", 500);
+		    BaseDato.usuarios.get("juan").depositar("juan", 500);
 
-		    assertEquals(500, DataBase.usuarios.get("juan").getSaldo());
+		    assertEquals(500, BaseDato.usuarios.get("juan").getSaldo());
 		}
 		
 		@Test
@@ -42,49 +42,49 @@ class CuentaTest {
 		@Test
 		void testRetirarValido() {
 
-		    DataBase.usuarios.clear();
+		    BaseDato.usuarios.clear();
 
 		    Cuenta cuenta = new Cuenta("Juan","1234");
 		    cuenta.setSaldo(1000);
 
-		    DataBase.usuarios.put("Juan", cuenta);
+		    BaseDato.usuarios.put("Juan", cuenta);
 
 		    boolean resultado = cuenta.retirar("Juan", 500);
 
 		    assertTrue(resultado);
-		    assertEquals(500, DataBase.usuarios.get("Juan").getSaldo());
+		    assertEquals(500, BaseDato.usuarios.get("Juan").getSaldo());
 		}
 		
 		@Test
 		void testRetirarFondosInsuficientes() {
 
-		    DataBase.usuarios.clear();
+		    BaseDato.usuarios.clear();
 
 		    Cuenta cuenta = new Cuenta("Ruperto","1234");
 		    cuenta.setSaldo(1000);
 
-		    DataBase.usuarios.put("Ruperto", cuenta);
+		    BaseDato.usuarios.put("Ruperto", cuenta);
 
 		    boolean resultado = cuenta.retirar("Ruperto", 1500);
 
 		    assertFalse(resultado);
-		    assertEquals(1000, DataBase.usuarios.get("Ruperto").getSaldo());
+		    assertEquals(1000, BaseDato.usuarios.get("Ruperto").getSaldo());
 		}
 		
 		@Test
 		void testRetirarSaldoCompleto() {
 
-		    DataBase.usuarios.clear();
+		    BaseDato.usuarios.clear();
 
 		    Cuenta cuenta = new Cuenta("Carol","1234");
 		    cuenta.setSaldo(1000);
 
-		    DataBase.usuarios.put("Carol", cuenta);
+		    BaseDato.usuarios.put("Carol", cuenta);
 
 		    boolean resultado = cuenta.retirar("Carol", 1000);
 
 		    assertTrue(resultado);
-		    assertEquals(0, DataBase.usuarios.get("Carol").getSaldo());
+		    assertEquals(0, BaseDato.usuarios.get("Carol").getSaldo());
 		}
 
 			// VERIFICA  EL METODO CONVERTIR DIVISA
@@ -93,12 +93,12 @@ class CuentaTest {
 			@Test
 			void testConvertDivisaValido() {
 
-			    DataBase.usuarios.clear();
+			    BaseDato.usuarios.clear();
 
 			    Cuenta cuenta = new Cuenta("Pedro","1234");
 			    cuenta.setSaldo(100000);
 
-			    DataBase.usuarios.put("Pedro", cuenta);
+			    BaseDato.usuarios.put("Pedro", cuenta);
 
 			    boolean resultado = cuenta.convertDivisa("Pedro", 1000);
 
@@ -108,12 +108,12 @@ class CuentaTest {
 			@Test
 			void testConvertDivisaMontoNegativo() {
 
-				DataBase.usuarios.clear();
+				BaseDato.usuarios.clear();
 
 			    Cuenta cuenta = new Cuenta("Pedro","1234");
 			    cuenta.setSaldo(100000);
 
-			    DataBase.usuarios.put("Pedro", cuenta);
+			    BaseDato.usuarios.put("Pedro", cuenta);
 
 			    boolean resultado = cuenta.convertDivisa("Pedro", -1000);
 
@@ -122,12 +122,12 @@ class CuentaTest {
 		@Test
 			void testConvertDivisaMontoCero() {
 
-				DataBase.usuarios.clear();
+				BaseDato.usuarios.clear();
 
 			    Cuenta cuenta = new Cuenta("Pedro","1234");
 			    cuenta.setSaldo(100000);
 
-			    DataBase.usuarios.put("Pedro", cuenta);
+			    BaseDato.usuarios.put("Pedro", cuenta);
 
 			    boolean resultado = cuenta.convertDivisa("Pedro", 0);
 
@@ -138,12 +138,12 @@ class CuentaTest {
 			@Test
 			void testMostrarCuenta() {
 
-			    DataBase.usuarios.clear();
+			    BaseDato.usuarios.clear();
 
 			    Cuenta cuenta = new Cuenta("Alicia","1234");
 			    cuenta.setSaldo(5000);
 
-			    DataBase.usuarios.put("Alicia", cuenta);
+			    BaseDato.usuarios.put("Alicia", cuenta);
 
 			    ByteArrayOutputStream salida = new ByteArrayOutputStream();
 			    System.setOut(new PrintStream(salida));

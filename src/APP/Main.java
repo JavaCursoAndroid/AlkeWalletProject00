@@ -2,18 +2,17 @@ package APP;
 
 import java.util.ArrayList;
 
-import DDBB.DataBase;
-import HERRAMIENTAS.MiBoxTool;
-
-import PANTALLAS.Pantalla;
-import PANTALLAS.PantallaControl;
-import PANTALLAS.PantallaConvertirDivisa;
-import PANTALLAS.PantallaCrearCuenta;
-import PANTALLAS.PantallaDepositar;
-import PANTALLAS.PantallaLogin;
-import PANTALLAS.PantallaMenuPrincipal;
-import PANTALLAS.PantallaRetirar;
-import PANTALLAS.PantallaSalir;
+import bd.BaseDato;
+import herramientas.Utilidades;
+import pantallas.ConvertidorDivisa;
+import pantallas.MenuPrincipal;
+import pantallas.PanelControl;
+import pantallas.Pantalla;
+import pantallas.PantallaCrearCuenta;
+import pantallas.Depositar;
+import pantallas.Registro;
+import pantallas.Retirar;
+import pantallas.Salir;
 
 public class Main {
 
@@ -25,7 +24,7 @@ public static String usuarioActual;
 // MENÚ PRINCIPAL
 // =====================================================
 
-public static void principal() {
+public static void raiz() {
 
     ArrayList<Integer> OpsValidas =
             new ArrayList<>();
@@ -39,7 +38,7 @@ public static void principal() {
     do {
 
         Pantalla<Integer> menuPrincipal =
-                new PantallaMenuPrincipal();
+                new MenuPrincipal();
 
         opcion = menuPrincipal.ejecutar();
 
@@ -47,7 +46,7 @@ public static void principal() {
 
             System.out.println("\nOpción inválida.");
 
-            MiBoxTool.pausa(1500);
+            Utilidades.pausa(1500);
 
             continue;
         }
@@ -61,7 +60,7 @@ public static void principal() {
         case 1:
 
             Pantalla<String> login =
-                    new PantallaLogin();
+                    new Registro();
 
             usuarioActual = login.ejecutar();
 
@@ -89,11 +88,11 @@ public static void principal() {
         case 3:
 
             Pantalla<Void> salir =
-                    new PantallaSalir();
+                    new Salir();
 
             salir.ejecutar();
 
-            MiBoxTool.pausa(3000);
+            Utilidades.pausa(3000);
 
             break;
         }
@@ -120,7 +119,7 @@ public static void rama0() {
     do {
 
         Pantalla<Integer> panelControl =
-                new PantallaControl();
+                new PanelControl();
 
         opcion = panelControl.ejecutar();
 
@@ -128,7 +127,7 @@ public static void rama0() {
 
             System.out.println("\nOpción inválida.");
 
-            MiBoxTool.pausa(1500);
+            Utilidades.pausa(1500);
 
             continue;
         }
@@ -141,21 +140,21 @@ public static void rama0() {
 
         case 1:
 
-            Pantalla<Double> deposito = new PantallaDepositar();
+            Pantalla<Double> deposito = new Depositar();
 
             double montoDepositar = deposito.ejecutar();
 
-            DataBase.usuarios.get(usuarioActual).depositar(usuarioActual, montoDepositar);
+            BaseDato.usuarios.get(usuarioActual).depositar(usuarioActual, montoDepositar);
 
             double saldo =
-                    DataBase.usuarios.get(usuarioActual).getSaldo();
+                    BaseDato.usuarios.get(usuarioActual).getSaldo();
                             
             System.out.println(
                     "\nNuevo saldo: "
                     + saldo
                     + " CLP");
 
-            MiBoxTool.pausa(2500);
+            Utilidades.pausa(2500);
 
             break;
 
@@ -166,22 +165,22 @@ public static void rama0() {
         case 2:
 
             Pantalla<Double> retiro =
-                    new PantallaRetirar();
+                    new Retirar();
 
             double montoRetirar =
                     retiro.ejecutar();
 
-            DataBase.usuarios.get(usuarioActual).retirar(usuarioActual, montoRetirar);
+            BaseDato.usuarios.get(usuarioActual).retirar(usuarioActual, montoRetirar);
 
             saldo =
-                    DataBase.usuarios.get(usuarioActual).getSaldo();
+                    BaseDato.usuarios.get(usuarioActual).getSaldo();
 
             System.out.println(
                     "\nNuevo saldo: "
                     + saldo
                     + " CLP");
 
-            MiBoxTool.pausa(2500);
+            Utilidades.pausa(2500);
 
             break;
 
@@ -192,20 +191,20 @@ public static void rama0() {
         case 3:
 
             Pantalla<Double> conversion =
-                    new PantallaConvertirDivisa();
+                    new ConvertidorDivisa();
 
             double montoConversion =
                     conversion.ejecutar();
 
-            MiBoxTool.cleanerscreen();
+            Utilidades.cleanerscreen();
 
-            MiBoxTool.titulo(
+            Utilidades.titulo(
                     "Conversión de divisas",
                     50);
 
-            DataBase.usuarios.get(usuarioActual).convertDivisa(usuarioActual, montoConversion);
+            BaseDato.usuarios.get(usuarioActual).convertDivisa(usuarioActual, montoConversion);
 
-            MiBoxTool.pausa(10000);
+            Utilidades.pausa(10000);
 
             break;
 
@@ -218,7 +217,7 @@ public static void rama0() {
             System.out.println(
                     "\nRegresando al menú principal...");
 
-            MiBoxTool.pausa(1500);
+            Utilidades.pausa(1500);
 
             break;
         }
@@ -232,7 +231,7 @@ public static void rama0() {
 
 public static void main(String[] args) {
 
-    principal();
+    raiz();
 }
 
 }

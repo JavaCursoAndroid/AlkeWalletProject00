@@ -1,15 +1,15 @@
-package PANTALLAS;
+package pantallas;
 
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
-public class PantallaMenuPrincipal extends Pantalla<Integer>
-                                   implements OptionSelector {
+public class MenuPrincipal extends Pantalla<Integer>
+                                   implements OpcionSelector {
 
     @Override
     protected void showInfo() {
 
-        MiBoxTool.titulo("Bienvenido a Alke Wallet DANGELO APP", 50);
+        Utilidades.titulo("Bienvenido a Alke Wallet DANGELO APP", 50);
 
         System.out.println("\nEscoja una de las siguientes opciones:");
         System.out.println("\n1) Ingresar a su cuenta");
@@ -28,7 +28,7 @@ public class PantallaMenuPrincipal extends Pantalla<Integer>
 
         System.out.print("\nEstá ingresando: ");
 
-        String entrada = ConsoleManager.scanner.nextLine();
+        String entrada = ConsolaAdministrador.scanner.nextLine();
 
         if (!entrada.matches("\\d+")) {
 

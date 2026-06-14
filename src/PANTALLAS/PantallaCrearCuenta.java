@@ -1,10 +1,9 @@
-package PANTALLAS;
+package pantallas;
 
-import DDBB.Cuenta;
-import DDBB.DataBase;
-
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
+import bd.Cuenta;
+import bd.BaseDato;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
 public class PantallaCrearCuenta extends Pantalla<Boolean> {
 	
@@ -12,7 +11,7 @@ public class PantallaCrearCuenta extends Pantalla<Boolean> {
     @Override
     protected void showInfo() {
 
-        MiBoxTool.titulo("Creación de cuenta", 50);
+        Utilidades.titulo("Creación de cuenta", 50);
     }
 
     @Override
@@ -22,16 +21,16 @@ public class PantallaCrearCuenta extends Pantalla<Boolean> {
 
             System.out.print("\nCree un Nombre de usuario: ");
 
-            String usuario = ConsoleManager.scanner.nextLine();
+            String usuario = ConsolaAdministrador.scanner.nextLine();
 
-            if (DataBase.usuarios.containsKey(usuario)) {
+            if (BaseDato.usuarios.containsKey(usuario)) {
 
                 System.out.println(
                         "\nERROR: El nombre de usuario ya existe.");
 
-                MiBoxTool.pausa(2000);
+                Utilidades.pausa(2000);
 
-                MiBoxTool.cleanerscreen();
+                Utilidades.cleanerscreen();
 
                 showInfo();
 
@@ -40,16 +39,16 @@ public class PantallaCrearCuenta extends Pantalla<Boolean> {
 
             System.out.print("\nCrear contraseña: ");
 
-            String password = ConsoleManager.scanner.nextLine();
+            String password = ConsolaAdministrador.scanner.nextLine();
             
             // SE AÑADRE EL NUEVO USUARIO Y CONTRASEÑA A LA "BASE DE DATOS"
-            DataBase.usuarios.put(
+            BaseDato.usuarios.put(
                     usuario,
                     new Cuenta(usuario, password)); // Creacion del objeto cuenta asociado al password
 
             System.out.println ("\nCuenta creada con éxito.");
 
-            MiBoxTool.pausa(2000);
+            Utilidades.pausa(2000);
 
             return true;
         }

@@ -1,20 +1,18 @@
-package PANTALLAS;
+package pantallas;
 
 import APP.Main;
+import bd.BaseDato;
+import herramientas.ConsolaAdministrador;
+import herramientas.Utilidades;
 
-import DDBB.DataBase;
-
-import HERRAMIENTAS.ConsoleManager;
-import HERRAMIENTAS.MiBoxTool;
-
-public class PantallaDepositar extends Pantalla<Double> {
+public class Depositar extends Pantalla<Double> {
 
     @Override
     protected void showInfo() {
 
-    	MiBoxTool.titulo("Depósito de fondos", 50);
+    	Utilidades.titulo("Depósito de fondos", 50);
 
-    	DataBase.usuarios.get(Main.usuarioActual).mostrarCuenta(Main.usuarioActual);
+    	BaseDato.usuarios.get(Main.usuarioActual).mostrarCuenta(Main.usuarioActual);
     }
 
     @Override
@@ -28,7 +26,7 @@ public class PantallaDepositar extends Pantalla<Double> {
                         "\nIngrese monto a depositar: ");
 
                 String entrada =
-                        ConsoleManager.scanner.nextLine();
+                        ConsolaAdministrador.scanner.nextLine();
 
                 entrada = entrada.replace(",", ".");
 
@@ -40,7 +38,7 @@ public class PantallaDepositar extends Pantalla<Double> {
                     System.out.println(
                             "\nERROR: Debe ingresar un valor positivo.");
 
-                    MiBoxTool.pausa(2000);
+                    Utilidades.pausa(2000);
 
                     continue;
                 }
@@ -52,7 +50,7 @@ public class PantallaDepositar extends Pantalla<Double> {
                 System.out.println(
                         "\nERROR: Debe ingresar un número válido.");
 
-                MiBoxTool.pausa(2000);
+                Utilidades.pausa(2000);
             }
         }
     }
